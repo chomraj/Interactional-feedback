@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Previous head section remains the same -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Terms Matching Exercise</title>
+    <style>
+        /* Previous CSS styles remain the same */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .terms-container, .definitions-container {
+            flex: 1;
+        }
+
+        .term, .definition {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            cursor: pointer;
+        }
+
+        .term {
+            background: #e9ecef;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .definition {
+            border: 2px dashed #adb5bd;
+            font-style: italic;
+        }
+
+        .term.selected {
+            background: #4dabf7;
+            color: white;
+        }
+
+        .definition.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .definition.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #score {
+            font-size: 1.2em;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        #reset-button {
+            padding: 10px 20px;
+            background: #4dabf7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #reset-button:hover {
+            background: #3793dd;
+        }
+
+        .completed {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Match Language Learning Terms</h1>
+    <p>Click a term on the right, then click its matching definition on the left.</p>
+    <div id="score">Score: 0/22</div>
+    <div class="container">
+        <div class="definitions-container">
+            <div class="definition" data-id="11">When a listener signals that a speaker's message is unclear and works to resolve the issue.</div>
+            <div class="definition" data-id="3">Negative feedback during spoken interaction.</div>
+            <div class="definition" data-id="20">Body movements and signals such as gestures, facial expressions, head, hand, and finger movements</div>
+            <div class="definition" data-id="7">Strategies that rephrase a learner's erroneous production into the correct form.</div>
+            <div class="definition" data-id="15">Requests made when the teacher or interlocutor does not fully understand a learner's utterance.</div>
+            <div class="definition" data-id="1">Information that tells the learner what is not possible in a given language.</div>
+            <div class="definition" data-id="22">Errors that cause problems in communication and include errors such as wrong word order or inappropriate uses of lexical items.</div>
+            <div class="definition" data-id="9">Feedback provided on a wide range of forms.</div>
+            <div class="definition" data-id="17">Feedback providing metalinguistic comments about language.</div>
+            <div class="definition" data-id="4">Signals to the listener that something is wrong with their utterance.</div>
+            <div class="definition" data-id="13">Reformulates a learner's erroneous utterance into a correct form while maintaining focus on meaning.</div>
+            <div class="definition" data-id="6">Attention to form that occurs incidentally in the context of communication.</div>
+            <div class="definition" data-id="19">Feedback that identifies the error and then overtly corrects it</div>
+            <div class="definition" data-id="2">Information that tells the learner what is possible in a given language.</div>
+            <div class="definition" data-id="8">Feedback that pushes or prompts the learner to self-correct.</div>
+            <div class="definition" data-id="21">Errors that do not affect general understanding of the message and usually have to do with minor errors such as those related to the omission of morphological markers or function words</div>
+            <div class="definition" data-id="16">Repeats all or part of the learner's erroneous utterances with rising intonation.</div>
+            <div class="definition" data-id="5">Interactional modifications to resolve difficulties in message comprehensibility.</div>
+            <div class="definition" data-id="12">Attempts to draw learners' attention to form deliberately.</div>
+            <div class="definition" data-id="18">Feedback strategies that attempt more overtly to elicit the correct form from the learner</div>
+            <div class="definition" data-id="10">Feedback provided on certain preselected forms.</div>
+            <div class="definition" data-id="14">The immediate response of the learner to feedback, which may be correct or incorrect.</div>
+        </div>
+        <div class="terms-container">
+            <div class="term" data-id="1">Negative Evidence</div>
+            <div class="term" data-id="2">Positive Evidence</div>
+            <div class="term" data-id="3">Interactional Feedback</div>
+            <div class="term" data-id="4">Negative Feedback</div>
+            <div class="term" data-id="5">Negotiation</div>
+            <div class="term" data-id="6">FonF</div>
+            <div class="term" data-id="7">Reformulations</div>
+            <div class="term" data-id="8">Elicitations</div>
+            <div class="term" data-id="9">Extensive Feedback</div>
+            <div class="term" data-id="10">Intensive Feedback</div>
+            <div class="term" data-id="11">Negotiation of Meaning</div>
+            <div class="term" data-id="12">Negotiation of Form</div>
+            <div class="term" data-id="13">Recasts</div>
+            <div class="term" data-id="14">Uptake</div>
+            <div class="term" data-id="15">Clarification Requests</div>
+            <div class="term" data-id="16">Repetition</div>
+            <div class="term" data-id="17">Metalinguistic Feedback</div>
+            <div class="term" data-id="18">Data Elicitation</div>
+            <div class="term" data-id="19">Direct correction</div>
+            <div class="term" data-id="20">Nonverbal feedback</div>
+            <div class="term" data-id="21">Local errors</div>
+            <div class="term" data-id="22">Global errors</div>
+        </div>
+    </div>
+    <button id="reset-button">Reset Exercise</button>
+
+    <script>
+        // Previous JavaScript code remains the same
+        let selectedTerm = null;
+        let score = 0;
+        let matchedPairs = new Set();
+
+        const terms = document.querySelectorAll('.term');
+        const definitions = document.querySelectorAll('.definition');
+        const scoreDisplay = document.getElementById('score');
+        const resetButton = document.getElementById('reset-button');
+
+        // Add click handlers to terms
+        terms.forEach(term => {
+            term.addEventListener('click', handleTermClick);
+        });
+
+        // Add click handlers to definitions
+        definitions.forEach(definition => {
+            definition.addEventListener('click', handleDefinitionClick);
+        });
+
+        // Reset button handler
+        resetButton.addEventListener('click', resetExercise);
+
+        function handleTermClick(event) {
+            const term = event.target;
+            
+            // Don't allow clicking completed terms
+            if (term.classList.contains('completed')) {
+                return;
+            }
+
+            // Clear previous selection
+            terms.forEach(t => t.classList.remove('selected'));
+            
+            // Select clicked term
+            term.classList.add('selected');
+            selectedTerm = term;
+        }
+
+        function handleDefinitionClick(event) {
+            const definition = event.target;
+            
+            // Only proceed if a term is selected and definition hasn't been matched
+            if (!selectedTerm || definition.classList.contains('correct')) {
+                return;
+            }
+
+            // Check if match is correct
+            if (selectedTerm.dataset.id === definition.dataset.id) {
+                // Correct match
+                definition.classList.remove('incorrect');
+                definition.classList.add('correct');
+                selectedTerm.classList.add('completed');
+                matchedPairs.add(selectedTerm.dataset.id);
+                score++;
+            } else {
+                // Incorrect match
+                definition.classList.add('incorrect');
+                setTimeout(() => {
+                    definition.classList.remove('incorrect');
+                }, 1000);
+            }
+
+            // Update score
+            scoreDisplay.textContent = `Score: ${score}/22`;
+
+            // Clear selection
+            selectedTerm.classList.remove('selected');
+            selectedTerm = null;
+        }
+
+        function resetExercise() {
+            // Reset score
+            score = 0;
+            scoreDisplay.textContent = `Score: ${score}/22`;
+            matchedPairs.clear();
+
+            // Reset all terms and definitions
+            terms.forEach(term => {
+                term.classList.remove('selected', 'completed');
+            });
+
+            definitions.forEach(definition => {
+                definition.classList.remove('correct', 'incorrect');
+            });
+
+            selectedTerm = null;
+            
+            // Randomize definitions order
+            const definitionsContainer = document.querySelector('.definitions-container');
+            Array.from(definitionsContainer.children)
+                .sort(() => Math.random() - 0.5)
+                .forEach(node => definitionsContainer.appendChild(node));
+        }
+    </script>
+</body>
+</html>
